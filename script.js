@@ -31,7 +31,7 @@ function playRound(playerSelection, computerSelection) {
     else if (playerSelection == "paper") {
         switch(computerSelection) {
             case "rock":
-                playerScore;;
+                playerScore++;
                 return "You win. Paper beats rock.";
             case "paper":
                 return "Tie. Paper ties paper";
@@ -54,15 +54,12 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function playGame() {
-
-    for (let x = 0; x < 5; x++) {
-        getComputerChoice();
-        getPlayerChoice();
-        console.log(playRound(playerSelection, computerSelection));
-
-        console.log("Player score: " + playerScore);
-        console.log("Comp score: " + computerScore);
+function determineWinner() {
+    if (playerScore == 5) {
+        winner.textContent = "Player wins";
+    }
+    else if (computerScore ==5) {
+        winner.textContent = "CPU wins";
     }
 }
 
@@ -70,20 +67,37 @@ const rockButton = document.querySelector(".rock");
 const paperButton = document.querySelector(".paper");
 const scissorsButton = document.querySelector(".scissors");
 
+const resultMsg = document.querySelector(".resultText");
+const playerScoreText = document.querySelector(".playerScore");
+const cpuScoreText = document.querySelector(".cpuScore");
+const winner = document.querySelector(".winner");
+
 rockButton.addEventListener("click", function() {
     getComputerChoice();
     playerSelection = "rock"; 
-    console.log(playRound(playerSelection, computerSelection));
+    //console.log(playRound(playerSelection, computerSelection));
+    resultMsg.textContent = playRound(playerSelection,computerSelection);
+    playerScoreText.textContent = "Player Score: " + playerScore;
+    cpuScoreText.textContent = "CPU Score: " + computerScore;
+    determineWinner();
 });
 
 paperButton.addEventListener("click", function() {
     getComputerChoice();
     playerSelection = "paper"; 
-    console.log(playRound(playerSelection, computerSelection));
+    //console.log(playRound(playerSelection, computerSelection));
+    resultMsg.textContent = playRound(playerSelection,computerSelection);
+    playerScoreText.textContent = "Player Score: " + playerScore;
+    cpuScoreText.textContent = "CPU Score: " + computerScore;
+    determineWinner();
 });
 
 scissorsButton.addEventListener("click", function() {
     getComputerChoice();
     playerSelection = "scissors"; 
-    console.log(playRound(playerSelection, computerSelection));
+    //console.log(playRound(playerSelection, computerSelection));
+    resultMsg.textContent = playRound(playerSelection,computerSelection);
+    playerScoreText.textContent = "Player Score: " + playerScore;
+    cpuScoreText.textContent = "CPU Score: " + computerScore;
+    determineWinner();
 });
